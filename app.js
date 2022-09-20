@@ -21,7 +21,14 @@ const userRoutes = require('./routes/userRoutes')
 
 
 // Middleware
-app.use(cors())
+app.use(
+  cors({
+      // React app
+      origin: ["http://localhost:3000", "*"], 
+      methods: "GET,POST,PUT,DELETE",
+      credentials: true,
+    })
+  );
 app.use(morgan('tiny'))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -41,14 +48,7 @@ app.use(cookieParser("secretcode"));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(
-  cors({
-      // React app
-      origin: "http://localhost:3000", 
-      methods: "GET,POST,PUT,DELETE",
-      credentials: true,
-    })
-  );
+
 
 app.use((req, res, next) => {
     console.log(req.path, req.method)
