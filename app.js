@@ -22,7 +22,7 @@ const userRoutes = require('./routes/userRoutes')
 
 // Middleware
 const allowedOrigins = ['http://localhost:3000',
-                      '*'];
+                      'https://starting-strength-frontend.herokuapp.com/'];
 
 app.use(cors({
   origin: function(origin, callback){
